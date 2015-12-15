@@ -22,14 +22,14 @@ var requestHandler = function(request, response) {
       console.log('Recieved Body Data:');
       // dataString += chuck.toString();
       storage.push(chuck);
-      console.log(storage);
     });
 
     request.on('end', function () {
       response.writeHead(201, 'OK', headers);
-      response.end();
+      response.end(JSON.stringify(storage));
+      console.log(storage);
     });
-
+      
     
   }
 
