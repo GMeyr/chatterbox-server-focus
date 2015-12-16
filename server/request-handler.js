@@ -1,4 +1,5 @@
-var storage = [];
+var storage = {};
+storage.results = [];
 var url = require('url');
 
 var requestHandler = function(request, response) {
@@ -13,23 +14,22 @@ var requestHandler = function(request, response) {
   var headers = defaultCorsHeaders; 
 
 
-
-
   if (request.method === 'POST') {
     console.log ("[201]" + request.method + "to" + request.url);
 
     request.on('data', function(chuck) {
       console.log('Recieved Body Data:');
+      dataString += chuck;
       // dataString += chuck.toString();
-      storage.push(chuck);
     });
 
     request.on('end', function () {
       response.writeHead(201, 'OK', headers);
-      response.end(JSON.stringify(storage));
+      response.end();
+       storage.results.push(dataString);
       console.log(storage);
     });
-      
+
     
   }
 
@@ -54,14 +54,7 @@ var requestHandler = function(request, response) {
 
     response.writeHead(statusCode, headers);
 
-    var testObj = {
-      results: [{
-      user: "testuser",
-      message: "testmessage"
-      }]
-    };
-
-    response.end(JSON.stringify(testObj));
+    response.end(JSON.stringify(storage));
   }
   if(request.method === 'OPTIONS'){
       response.writeHead(200, headers);
