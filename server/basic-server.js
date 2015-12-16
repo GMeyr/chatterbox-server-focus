@@ -1,7 +1,7 @@
 /* Import node's http module: */
 var http = require("http");
-var handler = require("./request-handler.js");
-var subs = require('./spec/Stubs.js');
+var handler = require("./request-handler");
+var subs = require('./spec/Stubs');
 
 var port = 3000;
 

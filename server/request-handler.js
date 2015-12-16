@@ -59,13 +59,7 @@ var requestHandler = function(request, response) {
   if(request.method === 'OPTIONS'){
       response.writeHead(200, headers);
       response.end();
-  }
-
-  // if (request.method !== 'GET' && request.method !== 'POST') {
-  //     console.log("[404]" + request.method + " to " + request.url)
-  //     response.writeHead(404, "Method not supported", {'Content-Type': 'text/plain'});
-  //     response.end();
-  // }                        
+  }                       
 };
 
 
