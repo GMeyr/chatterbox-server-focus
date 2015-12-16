@@ -26,7 +26,7 @@ var requestHandler = function(request, response) {
     request.on('end', function () {
       response.writeHead(201, 'OK', headers);
       response.end();
-       storage.results.push(dataString);
+       storage.results.push(JSON.parse(dataString));
       console.log(storage);
     });
 
